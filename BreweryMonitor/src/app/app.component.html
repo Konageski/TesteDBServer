@@ -1,0 +1,35 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h2>{{ title }}</h2>
+</div>
+<h3>The refrigerated truck is loaded with: </h3>
+
+<mat-grid-list cols="3" rowHeight="100px" style="background-color: black">
+    <mat-grid-tile *ngFor="let container of containers" [style.background]="container.color">
+        Container {{container.id}}
+        <br>
+        {{container.name}}
+        <br>
+        Min {{container.minimumTemperature}}.0&deg; - Max {{container.maximumTemperature}}.0&deg;
+        <br>
+        Temperature {{container.currentTemperature.toFixed(1)}}
+    </mat-grid-tile>
+</mat-grid-list>
+
+<br>
+The refrigerator is : {{refrigeratIsOn?'ON':'OFF'}}
+<br>
+<br>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Simulate the door</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        The door is : {{doorOpen?'Opened':'Closed'}}
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="warn" [disabled]="doorOpen" (click)="onDoorOpened()">Open the door</button>
+        <button mat-raised-button color="primary" [disabled]="!doorOpen" (click)="onDoorClosed()">Close the door</button>
+    </mat-card-actions>
+</mat-card>
